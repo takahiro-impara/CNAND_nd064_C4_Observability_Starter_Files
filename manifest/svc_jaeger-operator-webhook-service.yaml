@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    name: jaeger-operator
+  name: jaeger-operator-webhook-service
+  namespace: observability
+  uid: 072cfafb-5478-4dbe-96c1-ad2a08f6cb28
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 172.20.130.220
+  clusterIPs:
+  - 172.20.130.220
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: https
+    nodePort: 32496
+    port: 443
+    protocol: TCP
+    targetPort: 9443
+  - name: http
+    nodePort: 32497
+    port: 80
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    name: jaeger-operator
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: a072cfafb54784dbe96c1ad2a08f6cb2-357632875.us-east-2.elb.amazonaws.com

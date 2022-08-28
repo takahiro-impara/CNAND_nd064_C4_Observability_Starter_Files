@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: prometheus
+    meta.helm.sh/release-namespace: monitoring
+    external-dns.alpha.kubernetes.io/hostname: grafana.staging.udacity.impara8.com
+  creationTimestamp: "2022-08-22T13:41:37Z"
+  labels:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 9.0.5
+    helm.sh/chart: grafana-6.32.10
+  name: prometheus-grafana
+  namespace: monitoring
+  resourceVersion: "12075226"
+  uid: 3a2df481-f3e9-409b-a697-cd9fb163bb5e
+spec:
+  ports:
+  - name: http-web
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app.kubernetes.io/instance: prometheus
+    app.kubernetes.io/name: grafana
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
