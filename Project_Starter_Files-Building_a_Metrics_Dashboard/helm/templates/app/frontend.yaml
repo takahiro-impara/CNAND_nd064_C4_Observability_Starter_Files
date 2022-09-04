@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/jasonsmithio/myfrontend:v1
+        image: frkoichi/dashboard-frontend:latest
         ports:
         - containerPort: 8080
 ---
