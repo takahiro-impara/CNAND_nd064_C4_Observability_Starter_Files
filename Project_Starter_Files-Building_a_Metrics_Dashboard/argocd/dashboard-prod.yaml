@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: dashboard-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values-prod.yaml
+    path: helm
+    repoURL: https://github.com/takahiro-impara/CNAND_nd064_C4_Observability_Starter_Files/tree/master/Project_Starter_Files-Building_a_Metrics_Dashboard
+    targetRevision: HEAD

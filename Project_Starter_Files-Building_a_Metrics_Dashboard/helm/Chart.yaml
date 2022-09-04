@@ -1,0 +1,7 @@
+apiVersion: v1
+name: dashboard
+keywords:
+  - dashboard
+version: 1.0.0
+maintainers:
+- name: impara8

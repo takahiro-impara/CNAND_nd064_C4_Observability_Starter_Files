@@ -4,10 +4,8 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-2:882275506731:certificate/3cbd9483-d66f-4e9e-bbd7-83024fd4ed24
     service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    #service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
     external-dns.alpha.kubernetes.io/hostname: jaeger.staging.udacity.impara8.com
-    kubectl.kubernetes.io/last-applied-configuration: |
-      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"jaeger","app.kubernetes.io/component":"service-query","app.kubernetes.io/instance":"simplest","app.kubernetes.io/managed-by":"jaeger-operator","app.kubernetes.io/name":"simplest-query","app.kubernetes.io/part-of":"jaeger"},"name":"simplest-query","namespace":"observability","ownerReferences":[{"apiVersion":"jaegertracing.io/v1","controller":true,"kind":"Jaeger","name":"simplest","uid":"de418aef-e12d-49fa-a9f8-be7c67e51373"}]},"spec":{"clusterIP":"172.20.225.71","clusterIPs":["172.20.225.71"],"internalTrafficPolicy":"Cluster","ipFamilies":["IPv4"],"ipFamilyPolicy":"SingleStack","ports":[{"name":"http-query","port":80,"protocol":"TCP","targetPort":16686},{"name":"grpc-query","port":16685,"protocol":"TCP","targetPort":16685}],"selector":{"app":"jaeger","app.kubernetes.io/component":"all-in-one","app.kubernetes.io/instance":"simplest","app.kubernetes.io/managed-by":"jaeger-operator","app.kubernetes.io/name":"simplest","app.kubernetes.io/part-of":"jaeger"},"sessionAffinity":"None","type":"LoadBalancer"},"status":{"loadBalancer":{}}}
   creationTimestamp: "2022-08-28T13:11:12Z"
   finalizers:
   - service.kubernetes.io/load-balancer-cleanup
@@ -38,9 +36,9 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - name: http-query
+  - name: http-query2
     nodePort: 32418
-    port: 443
+    port: 80
     protocol: TCP
     targetPort: 16686
   - name: grpc-query
