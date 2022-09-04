@@ -1,2 +1,5 @@
 namespace:
   name: dashboard-prod
+
+dns:
+  app: dashboard-frontend.staging.udacity.impara8.com

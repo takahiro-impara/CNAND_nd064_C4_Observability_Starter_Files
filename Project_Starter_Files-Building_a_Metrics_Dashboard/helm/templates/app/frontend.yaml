@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: frontend-app
   namespace: {{ .Values.namespace.name }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.dns.frontend }}
 spec:
   replicas: 3
   selector:
