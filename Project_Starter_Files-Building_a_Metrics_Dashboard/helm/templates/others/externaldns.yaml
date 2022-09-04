@@ -44,7 +44,13 @@ spec:
       labels:
         app: external-dns
     spec:
-vvexternal-dns-68b7f55cbb-28xpnexternal-dns-68b7f55cbb-28xpnexternal-dns-68b7f55cbb-28xpn*TODO:* Describe, in your own words, what the SLIs are, based on an SLO of *monthly uptime* and *request response time*.rce=ingress
+      serviceAccountName: external-dns
+      containers:
+      - name: external-dns
+        image: k8s.gcr.io/external-dns/external-dns:v0.10.2
+        args:
+        - --source=service
+        - --source=ingress
         - --domain-filter=staging.udacity.impara8.com # will make ExternalDNS see only the hosted zones matching provided domain, omit to process all available hosted zones
         - --provider=aws
         - --policy=upsert-only # would prevent ExternalDNS from deleting any records, omit to enable full synchronization
