@@ -12,6 +12,6 @@ spec:
     helm:
       valueFiles:
       - values-prod.yaml
-    path: helm
-    repoURL: https://github.com/takahiro-impara/CNAND_nd064_C4_Observability_Starter_Files/tree/master/Project_Starter_Files-Building_a_Metrics_Dashboard
+    path: Project_Starter_Files-Building_a_Metrics_Dashboard/helm
+    repoURL: https://github.com/takahiro-impara/CNAND_nd064_C4_Observability_Starter_Files
     targetRevision: HEAD
