@@ -3,3 +3,6 @@ namespace:
 
 dns:
   frontend: dashboard-frontend.staging.udacity.impara8.com
+
+cert:
+  arn: arn:aws:acm:us-east-2:882275506731:certificate/3cbd9483-d66f-4e9e-bbd7-83024fd4ed24

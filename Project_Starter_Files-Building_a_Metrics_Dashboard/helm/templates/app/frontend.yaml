@@ -24,12 +24,15 @@ kind: Service
 metadata:
   name: frontend-service
   namespace: {{ .Values.namespace.name }}
+  service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{ .Values.cert.arn }}
+  service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+  service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
   annotations:
     external-dns.alpha.kubernetes.io/hostname: {{ .Values.dns.frontend }}
 spec:
   selector:
     app: frontend
   ports:
-    - port: 8080
+    - port: 80
       targetPort: 8080
   type: LoadBalancer
