@@ -1,3 +1,7 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
