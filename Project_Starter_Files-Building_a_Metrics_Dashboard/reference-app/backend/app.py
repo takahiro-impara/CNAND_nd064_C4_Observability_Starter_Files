@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 
 import pymongo
+import logging
 from flask_pymongo import PyMongo
 from jaeger_client import Config
 from flask_opentracing import FlaskTracing
