@@ -1,16 +1,9 @@
 ---
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-app
   namespace: {{ .Values.namespace.name }}
-  annotations:
-    sidecar.jaegertracing.io/inject: 'true'
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /metrics
-    prometheus.io/port: {{ .Values.port.backend }}
 spec:
   replicas: 3
   selector:
@@ -37,7 +30,7 @@ spec:
     app: backend
   ports:
     - port: 8081
-      targetPort: {{ .Values.port.backend }}
+      targetPort: 8080
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
