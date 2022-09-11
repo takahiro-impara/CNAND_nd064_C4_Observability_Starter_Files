@@ -55,7 +55,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: backend
+      release: prometheus
   endpoints:
   - port: backend
     path: /metrics
