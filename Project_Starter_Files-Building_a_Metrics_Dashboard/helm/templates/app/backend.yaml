@@ -40,6 +40,7 @@ spec:
     app: backend
   ports:
     - port: 80
+      name: backend
       targetPort: 8080
   type: LoadBalancer
 ---
