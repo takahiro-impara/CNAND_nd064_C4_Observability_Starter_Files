@@ -6,9 +6,6 @@ metadata:
   namespace: {{ .Values.namespace.name }}
   annotations:
     "sidecar.jaegertracing.io/inject": "true"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/metrics"
-    prometheus.io/port: "8080"
 spec:
   replicas: 3
   selector:
