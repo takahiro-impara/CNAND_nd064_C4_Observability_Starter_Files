@@ -6,6 +6,9 @@ metadata:
   namespace: {{ .Values.namespace.name }}
   annotations:
     "sidecar.jaegertracing.io/inject": "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: backendport
 spec:
   replicas: 3
   selector:
@@ -19,8 +22,11 @@ spec:
       containers:
       - name: backend
         image: frkoichi/dashboard-backend:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - name: backendport
+          containerPort: 8080
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
@@ -34,14 +40,18 @@ spec:
     app: backend
   ports:
     - port: 80
-      name: backend
-      targetPort: 80
+      targetPort: 8080
   type: LoadBalancer
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   name: backend
+  annotations:
+    sidecar.jaegertracing.io/inject: "true"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: /metrics
+    prometheus.io/port: backend
   namespace: monitoring
   labels:
     app: backend
@@ -49,7 +59,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      release: prometheus
+      app: backend
   endpoints:
   - port: backend
     path: /metrics
